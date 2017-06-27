@@ -32,7 +32,7 @@ import butterknife.OnClick;
 
 //业务：
 //获取到数据并且通知视图改变。
-public class MainActivity extends AppCompatActivity {
+public class MainActivity extends AppCompatActivity implements MainView{
 
     @BindView(R.id.main_lv)ListView mLv;
     @BindView(R.id.main_prb)ProgressBar mPrb;
@@ -56,21 +56,23 @@ public class MainActivity extends AppCompatActivity {
     public void onClick(){
         //业务逻辑
         //点击加载数据
-//        new MainPresenter(this).loadData();
+        new MainPresenter(this).loadData();
     }
 
-    //progressbar 显示
-    public void showPrb(){
+    @Override
+    public void showPrb() {
         mPrb.setVisibility(View.VISIBLE);
         mLv.setVisibility(View.GONE);
     }
-    //progressbar 隐藏
-    public void hidePrb(){
+
+    @Override
+    public void hidePrb() {
         mPrb.setVisibility(View.GONE);
         mLv.setVisibility(View.VISIBLE);
     }
-    //setData 设置内容（改变ListView，刷新）
-    public void setData(List<String> datas){
+
+    @Override
+    public void setData(List<String> datas) {
         adapter.addAll(datas);
         adapter.notifyDataSetChanged();
     }

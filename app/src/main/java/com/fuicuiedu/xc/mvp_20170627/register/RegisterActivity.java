@@ -8,6 +8,8 @@ import android.widget.Toast;
 
 import com.fuicuiedu.xc.mvp_20170627.R;
 
+import java.util.List;
+
 import butterknife.BindView;
 import butterknife.ButterKnife;
 import butterknife.OnClick;
@@ -45,7 +47,8 @@ public class RegisterActivity extends AppCompatActivity implements RegisterView 
     @OnClick(R.id.register_btn)
     public void onClcik() {
         //业务操作
-        new RegisterPresenter(this).register();
+        RegisterPresenter registerPresenter = new RegisterPresenter(this);
+        registerPresenter.register();
     }
 
     @Override
